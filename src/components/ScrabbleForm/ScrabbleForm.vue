@@ -1,10 +1,22 @@
 <template>
     <div>
-        <app-scrabble-tiles :scrabbleWord="submitWord" />
-        <label for = "scrabbleWord">Word</label><br>
-        <input type = "text" v-model="scrabbleWord" maxlength="9">
-        <p>{{ submitWord }}</p>
-        <button @click="submit">Submit</button>
+        <div class = "holder">
+            <div class = "form-controls">
+                <div>
+                    <button @click="selectedForm = 'AnagramForm'">Anagram Form</button>
+                </div>
+                <div>
+                    <button @click="selectedForm='DictionaryForm'">Dictionary Form</button>
+                </div>
+            </div>
+            <div class = "form">
+                <app-scrabble-tiles v-if="submitWord !== ''" :scrabbleWord="submitWord" />
+                <label for = "scrabbleWord">Word</label><br>
+                <input type = "text" v-model="scrabbleWord" maxlength="9">
+                <p>{{ submitWord }}</p>
+                <button @click="submit">Submit</button>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -15,7 +27,8 @@ export default {
         return {
             scrabbleWord: "test",
             submitWord: "",
-            errors: []
+            errors: [],
+            selectedForm: "AnagramForm"
         }
     },
     components: {
@@ -37,8 +50,34 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+    @import '../../assets/variables';
+    div {
+        background-color: $bkg-dark;
+    }
+    .holder {
+        width: 60%;
+        margin: 0px auto;
+    }
+
     input, button {
         color: black;
+    }
+
+    input {
+        background-color: lighten($bkg, 5%);
+        color: white;
+        width: 50%;
+        border: 1px solid $bkg-light;
+        border-radius: 3px;
+        padding: 10px;
+        font-family: poppins;
+    }
+
+    .form-controls {
+        div {
+            display: inline-block;
+            margin-right: 20px;
+        }
     }
 </style>
