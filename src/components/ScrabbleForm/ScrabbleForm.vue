@@ -3,36 +3,32 @@
         <div class = "holder">
             <div class = "form-controls">
                 <div>
-                    <button @click="selectedForm = 'AnagramForm'">Anagram Form</button>
+                    <button @click="selectedForm = 'appAnagramForm'">Anagram Form</button>
                 </div>
                 <div>
-                    <button @click="selectedForm='DictionaryForm'">Dictionary Form</button>
+                    <button @click="selectedForm='appDictionaryForm'">Dictionary Form</button>
                 </div>
             </div>
-            <div class = "form">
-                <app-scrabble-tiles v-if="submitWord !== ''" :scrabbleWord="submitWord" />
-                <label for = "scrabbleWord">Word</label><br>
-                <input type = "text" v-model="scrabbleWord" maxlength="9">
-                <p>{{ submitWord }}</p>
-                <button @click="submit">Submit</button>
-            </div>
+            <component :is="selectedForm"></component>
         </div>
     </div>
 </template>
 
 <script>
-import ScrabbleTiles from './ScrabbleTiles';
+import AnagramForm from './AnagramForm';
+import DictionaryForm from './DictionaryForm';
 export default {
     data() {
         return {
             scrabbleWord: "test",
             submitWord: "",
             errors: [],
-            selectedForm: "AnagramForm"
+            selectedForm: "appAnagramForm"
         }
     },
     components: {
-        appScrabbleTiles: ScrabbleTiles
+        appAnagramForm: AnagramForm,
+        appDictionaryForm: DictionaryForm
     },
     methods: {
         //when submit is selected, remove every character that is not a letter.
