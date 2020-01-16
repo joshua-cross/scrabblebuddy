@@ -1,22 +1,21 @@
 <template>
     <div>
         <div class = "holder">
-            <div class = "form-controls">
+            <app-anagram-form></app-anagram-form>
+            <!-- <div class = "form-controls">
                 <div>
                     <button @click="selectedForm = 'appAnagramForm'">Anagram Form</button>
                 </div>
                 <div>
                     <button @click="selectedForm='appDictionaryForm'">Dictionary Form</button>
                 </div>
-            </div>
-            <component :is="selectedForm"></component>
+            </div> -->
         </div>
     </div>
 </template>
 
 <script>
 import AnagramForm from './AnagramForm';
-import DictionaryForm from './DictionaryForm';
 export default {
     data() {
         return {
@@ -28,7 +27,6 @@ export default {
     },
     components: {
         appAnagramForm: AnagramForm,
-        appDictionaryForm: DictionaryForm
     },
     methods: {
         //when submit is selected, remove every character that is not a letter.
@@ -48,6 +46,11 @@ export default {
 
 <style lang="scss" scoped>
     @import '../../assets/variables';
+
+    @mixin button {
+        border-radius: 10px;
+    }
+
     div {
         background-color: $bkg-dark;
     }

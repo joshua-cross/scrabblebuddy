@@ -90,7 +90,8 @@ export default {
                 font-size: 2.5em
             } 
 
-            letter-spacing: 0.75px
+            letter-spacing: 0.75px;
+            font-weight: 600;
         }
     }
 </style>
